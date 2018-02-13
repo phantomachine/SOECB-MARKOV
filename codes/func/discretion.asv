@@ -1,0 +1,42 @@
+function  [F1,F2,H1,H2,PROBLEM] = discretion(A0, A1, A2, A3, A4, A5, n, beta, Q, W)
+%   disc	Solves model for discretion rule and companion representation.
+%	Sourced directly from Richard Dennis' Gauss algorithm
+
+
+H1 = A1;
+H2 = A5;
+F1 = zeros(1,n);
+F2 = zeros(1,n);
+M = zeros(n,n);
+PHIY = eye(n);
+
+% solving for feedback matrices H1, H2, F1, F2 
+maxiter = 5000;
+
+lenj = 1;
+j = 0;
+while lenj >= 1e-6 && j<=maxiter;
+  leni = 1;
+  i = 0;
+while leni >= 1e-6  && j<=maxiter;
+    MN = W+beta*F1'*Q*F1+beta*H1'*M*H1;
+    leni = max(abs(MN-M));    % d_infinity metric, sup| mn - m |
+    M = MN;
+    i = i + 1;
+end; 
+  D = A0-A2*H1-A4*F1;
+  F1n = -inv(Q+A3'*inv(D')*M*inv(D)*A3)*A3'*inv(D')*M*inv(D)*A1;
+  F2  = -inv(Q+A3'*inv(D')*M*inv(D)*A3)*A3'*inv(D')*M*inv(D)*A5;
+  H1 = inv(D)*(A1+A3*F1n);
+  H2 = inv(D)*(A5+A3*F2);
+  lenj = max(abs(F1n'-F1'));
+  F1 = F1n;
+    
+  j = j + 1;
+end;
+if j == maxiter
+      PROBLEM = 1;
+      return
+  else
+      PROBLEM = 0;
+  end

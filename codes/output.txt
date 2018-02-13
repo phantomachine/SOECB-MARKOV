@@ -1,0 +1,113 @@
+Estimating for Australia: NK-foreign VAR model & muq not zero
+Number of simulations: 500000 draws
+mh scale: 0.25
+Number of previous draws loaded: 2023600 draws
+Initial model Log likelihood
+  -1.8708e+03
+
+Error in <a href="matlab:helpUtils.errorDocCallback('statsizechk', '/Users/skywalker/Desktop/_kll_codes/func/statsizechk.m', 1)" style="font-weight:bold">statsizechk</a> (<a href="matlab: opentoline('/Users/skywalker/Desktop/_kll_codes/func/statsizechk.m',1,0)">line 1</a>)
+function [err, commonSize, numElements] = statsizechk(nparams,varargin)
+
+{Output argument "err" (and maybe others) not assigned during call to
+"/Users/skywalker/Desktop/_kll_codes/func/statsizechk.m>statsizechk".
+
+Error in <a href="matlab:helpUtils.errorDocCallback('normrnd', '/Users/skywalker/Desktop/_kll_codes/func/normrnd.m', 31)" style="font-weight:bold">normrnd</a> (<a href="matlab: opentoline('/Users/skywalker/Desktop/_kll_codes/func/normrnd.m',31,0)">line 31</a>)
+[err, sizeOut] = statsizechk(2,mu,sigma,varargin{:});
+
+Error in <a href="matlab:helpUtils.errorDocCallback('genTheta', '/Users/skywalker/Desktop/_kll_codes/genTheta.m', 9)" style="font-weight:bold">genTheta</a> (<a href="matlab: opentoline('/Users/skywalker/Desktop/_kll_codes/genTheta.m',9,0)">line 9</a>)
+    newTheta = Theta + normrnd(mean_Theta,var_Theta,1,npara);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('aus_estimate', '/Users/skywalker/Desktop/_kll_codes/aus_estimate.m', 330)" style="font-weight:bold">aus_estimate</a> (<a href="matlab: opentoline('/Users/skywalker/Desktop/_kll_codes/aus_estimate.m',330,0)">line 330</a>)
+        [newTheta] = genTheta(Theta, 0, variance_normal, npara, bounds);      %generate new Theta
+} 
+for i=1:npara
+     if pshape(i)~=0
+        Theta_marginal = [Theta_marginal, Theta_s(:,i)];
+        Thetapost  = [Thetapost, Theta_s(Nburn+1:end,i)];
+        paran = [paran; paraname(i,:)];
+     else
+     end
+end
+{Undefined function or variable 'Theta_marginal'.
+} 
+Theta_marginal = [];
+Thetapost = [];
+paran = [];
+
+for i=1:npara
+     if pshape(i)~=0
+        Theta_marginal = [Theta_marginal, Theta_s(:,i)];
+        Thetapost  = [Thetapost, Theta_s(Nburn+1:end,i)];
+        paran = [paran; paraname(i,:)];
+     else
+     end
+end
+marginal = marginal_density(Theta_marginal,logpri_s,loglike_s,MH_TRIM)
+{Subscript indices must either be real positive integers or logicals.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('marginal_density', '/Users/skywalker/Desktop/_kll_codes/marginal_density.m', 13)" style="font-weight:bold">marginal_density</a> (<a href="matlab: opentoline('/Users/skywalker/Desktop/_kll_codes/marginal_density.m',13,0)">line 13</a>)
+    simulations((B-1)*T+1:B*T,:) = x2(round(MH_TRIM*nruns):nruns,:,B);
+} 
+marginal = marginal_density(Theta_marginal,logpri_s,loglike_s,200)
+
+marginal =
+
+    0.1000
+    0.2000
+    0.3000
+    0.4000
+    0.5000
+    0.6000
+    0.7000
+    0.8000
+    0.9000
+
+clear
+aaddpath('/chain')
+{Undefined function 'aaddpath' for input arguments of type 'char'.
+} 
+ceil(0)
+
+ans =
+
+     0
+
+
+x = rand(10)
+
+x =
+
+    0.8147    0.1576    0.6557    0.7060    0.4387    0.2760    0.7513    0.8407    0.3517    0.0759
+    0.9058    0.9706    0.0357    0.0318    0.3816    0.6797    0.2551    0.2543    0.8308    0.0540
+    0.1270    0.9572    0.8491    0.2769    0.7655    0.6551    0.5060    0.8143    0.5853    0.5308
+    0.9134    0.4854    0.9340    0.0462    0.7952    0.1626    0.6991    0.2435    0.5497    0.7792
+    0.6324    0.8003    0.6787    0.0971    0.1869    0.1190    0.8909    0.9293    0.9172    0.9340
+    0.0975    0.1419    0.7577    0.8235    0.4898    0.4984    0.9593    0.3500    0.2858    0.1299
+    0.2785    0.4218    0.7431    0.6948    0.4456    0.9597    0.5472    0.1966    0.7572    0.5688
+    0.5469    0.9157    0.3922    0.3171    0.6463    0.3404    0.1386    0.2511    0.7537    0.4694
+    0.9575    0.7922    0.6555    0.9502    0.7094    0.5853    0.1493    0.6160    0.3804    0.0119
+    0.9649    0.9595    0.1712    0.0344    0.7547    0.2238    0.2575    0.4733    0.5678    0.3371
+
+x = rand(10,1)
+
+x =
+
+    0.1622
+    0.7943
+    0.3112
+    0.5285
+    0.1656
+    0.6020
+    0.2630
+    0.6541
+    0.6892
+    0.7482
+
+x(round(0*10:10,:)
+ x(round(0*10:10,:)
+                  |
+{Error: Expression or statement is incorrect--possibly unbalanced (, {, or [.
+} 
+x(round(0*10):10,:)
+{Subscript indices must either be real positive integers or logicals.
+} 
