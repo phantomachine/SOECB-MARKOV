@@ -29,7 +29,7 @@ diary('output.txt')
 
 disp('Estimating for Australia: NK-foreign VAR model & muq not zero')
 
-LOAD_OLD = 1;
+LOAD_OLD = 0;
 
 %% Policy Choice
 POLICY = 0;         % 0 = discretion; 1 = commitment
